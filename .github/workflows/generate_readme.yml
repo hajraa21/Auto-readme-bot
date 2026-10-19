@@ -1,0 +1,38 @@
+name: Auto-Generate README
+
+on:
+  push:
+    branches:["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install groq python-dotenv requests
+
+      - name: Run script to generate README
+        env:
+          GROQ_API_KEY: ${{secrets.GROQ_API_KEY}}
+        run: python main.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.net"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: auto-generate updated README.md" && git push)
