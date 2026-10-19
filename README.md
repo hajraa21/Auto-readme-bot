@@ -219,9 +219,9 @@ A: Edit the `SYSTEM_PROMPT` in `main.py` to include or reorder the desired secti
 A: Yes. The script works on any local checkout; just ensure the Groq API key is available in the environment.  
 
 **Q: How do I contribute a new language extension?**  
-A: Add the file extension to the `VALID_EXTENSIONS` list in `main.py` and submit a PR.
+A: Add the file extension to the `VALID_EXTENSIONS` list in `main.py` and submit a PR.  
 
-**Q: How can I use this for my personal projects?**
-A: Since the GitHub action is defined entirely within .github/workflows/generate_readme.yml, simply copy-paste that .github/workflows/generate_readme.yml file and your main.py script into the new repo and add GROQ_API__KEY to the new repository's settings, and it will automatically generate a README for that project too.
+**Q: How can I use this for my personal projects?**  
+A: Copy the `main.py` script and the GitHub Actions workflow into your repository, add the `GROQ_API_KEY` secret, and the bot will automatically generate a README for that project.  
 
-For further assistance, open an issue or contact the maintainer via GitHub Discussions or email at hajra.khan2108@gmail.com
+For further assistance, open an issue or contact the maintainer via GitHub Discussions or email at `hajra.khan2108@gmail.com`.
